@@ -1,0 +1,384 @@
+{
+  "info": {
+    "name": "Margins Digital Library API",
+    "_postman_id": "margins-api-collection-2026",
+    "description": "Comprehensive Postman collection for testing the Margins reading library and reflection journal backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "health"]
+        }
+      }
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Reader\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"your-email@example.com\",\n  \"password\": \"your-password\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User (Me)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "List Books (All / Filters / Search)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/books?status=ALL&sort=date_added&order=desc",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books"],
+              "query": [
+                { "key": "status", "value": "ALL" },
+                { "key": "sort", "value": "date_added" },
+                { "key": "order", "value": "desc" },
+                { "key": "search", "value": "", "disabled": true },
+                { "key": "genre", "value": "", "disabled": true }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Book by ID (with Highlights & Reflections)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/books/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Crime and Punishment\",\n  \"author\": \"Fyodor Dostoevsky\",\n  \"cover_url\": \"https://images.unsplash.com/photo-1544947950-fa07a98d237f\",\n  \"genre\": \"Classic Fiction\",\n  \"publication_year\": 1866,\n  \"isbn\": \"9780140449136\",\n  \"total_pages\": 545,\n  \"current_page\": 50,\n  \"status\": \"READING\",\n  \"rating\": 5,\n  \"review\": \"Intense psychological depth.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/books",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books"]
+            }
+          }
+        },
+        {
+          "name": "Update Book",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Crime and Punishment (Revised Translation)\",\n  \"author\": \"Fyodor Dostoevsky\",\n  \"rating\": 5,\n  \"status\": \"READING\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/books/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Reading Progress",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_page\": 120\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/books/1/progress",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books", "1", "progress"]
+            }
+          }
+        },
+        {
+          "name": "Delete Book",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/books/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "books", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Journal",
+      "item": [
+        {
+          "name": "List Journal Entries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/journal?search=&tag=",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "journal"]
+            }
+          }
+        },
+        {
+          "name": "Get Journal Entry by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/journal/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "journal", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Journal Entry",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Quiet Evenings by the Window\",\n  \"content\": \"Taking time to digest the chapters instead of skimming through.\",\n  \"book_id\": 1,\n  \"tags\": [\"Reflections\", \"Solitude\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/journal",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "journal"]
+            }
+          }
+        },
+        {
+          "name": "Update Journal Entry",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Quiet Evenings by the Window (Edited)\",\n  \"content\": \"Taking even more time to savor each sentence.\",\n  \"tags\": [\"Reflections\", \"Solitude\", \"Deep Work\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/journal/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "journal", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Journal Entry",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/journal/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "journal", "1"]
+            }
+          }
+        },
+        {
+          "name": "List User Tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/journal/tags",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "journal", "tags"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Highlights",
+      "item": [
+        {
+          "name": "List Highlights",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/highlights?search=&book_id=",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "highlights"]
+            }
+          }
+        },
+        {
+          "name": "Create Highlight",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passage\": \"Until I feared I would lose it, I never loved to read. One does not love breathing.\",\n  \"book_id\": 1,\n  \"page_number\": 32,\n  \"personal_note\": \"Harper Lee on the effortless necessity of books.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/highlights",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "highlights"]
+            }
+          }
+        },
+        {
+          "name": "Delete Highlight",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/highlights/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "highlights", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reading Goals",
+      "item": [
+        {
+          "name": "Get Reading Goal for Year",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/goals?year=2026",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "goals"]
+            }
+          }
+        },
+        {
+          "name": "Set Reading Goal",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"year\": 2026,\n  \"target_books\": 25\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/goals",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "goals"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard", "stats"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

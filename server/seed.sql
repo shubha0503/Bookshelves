@@ -1,0 +1,47 @@
+-- The owner-curated list of books read so far. Running this seed replaces the
+-- curated shelf contents while leaving account-owned books and notes untouched.
+USE margins_db;
+
+DELETE FROM curated_books;
+
+INSERT INTO curated_books (title, author, status) VALUES
+  ('The Diary of a Young Girl', 'Anne Frank', 'COMPLETED'),
+  ('The Brave: Param Vir Chakra Stories', 'Rachna Bisht Rawat', 'COMPLETED'),
+  ('Tongue-in-Cheek: The Funny Side of Life', 'A. Khyrunnisa', 'COMPLETED'),
+  ('Banaras Talkies', 'Satya Vyas', 'COMPLETED'),
+  ('Two States', 'Chetan Bhagat', 'COMPLETED'),
+  ('One Arranged Murder', 'Chetan Bhagat', 'COMPLETED'),
+  ('Half Girlfriend', 'Chetan Bhagat', 'COMPLETED'),
+  ('One Indian Girl', 'Chetan Bhagat', 'COMPLETED'),
+  ('Three Thousand Stitches: Ordinary People, Extraordinary Lives', 'Sudha Murty', 'COMPLETED'),
+  ('Slim Chance at Love: A Story of Love, Longing and Lots of Money', 'Nidhi Dorairaj Bruce', 'COMPLETED'),
+  ('October Junction', 'Divya Prakash Dubey', 'COMPLETED'),
+  ('Days at the Morisaki Bookshop', 'Satoshi Yagisawa', 'COMPLETED'),
+  ('Twisted Love', 'Ana Huang', 'COMPLETED'),
+  ('Twisted Games', 'Ana Huang', 'COMPLETED'),
+  ('Twisted Hate', 'Ana Huang', 'COMPLETED'),
+  ('Twisted Lies', 'Ana Huang', 'COMPLETED'),
+  ('The Silent Patient', 'Alex Michaelides', 'COMPLETED'),
+  ('I Too Had a Love Story', 'Ravinder Singh', 'COMPLETED'),
+  ('It Starts with Us', 'Colleen Hoover', 'COMPLETED'),
+  ('It Ends with Us', 'Colleen Hoover', 'COMPLETED'),
+  ('Wise and Otherwise', 'Sudha Murty', 'COMPLETED'),
+  ('The Prince and the Runaway Bride', 'Alisha Kay', 'COMPLETED'),
+  ('The World''s Best Boyfriend', 'Durjoy Datta', 'COMPLETED'),
+  ('Equations', 'Shivani Sibal', 'COMPLETED'),
+  ('The Gorakhpur Hospital Tragedy: A Doctor''s Memoir of a Deadly Medical Crisis', 'Kafeel Khan', 'COMPLETED'),
+  ('The Chirkuts', 'Alok Kumar', 'COMPLETED'),
+  ('Godan', 'Munshi Premchand', 'COMPLETED'),
+  ('The Temporary Roomie', 'Sarah Adams', 'COMPLETED'),
+  ('Grandma''s Bag of Stories', 'Sudha Murty', 'COMPLETED'),
+  ('Madhushala', 'Harivansh Rai Bachchan', 'COMPLETED'),
+  ('Two by Two', 'Nicholas Sparks', 'COMPLETED'),
+  ('Sweet Bean Paste', 'Tetsuya Akikawa', 'COMPLETED'),
+  ('White Nights', 'Fyodor Dostoyevsky', 'COMPLETED'),
+  ('Better than the Movies', 'Lynn Painter', 'COMPLETED'),
+  ('Gunahon Ka Devta', 'Dharamvir Bharati', 'COMPLETED'),
+  ('Musafir Cafe', 'Divya Prakash Dubey', 'COMPLETED'),
+  ('A Good Girl''s Guide to Murder', 'Holly Jackson', 'COMPLETED'),
+  ('Welcome to Aarampur', 'Dhruv Nath', 'COMPLETED'),
+  ('I''m Okay with the Girl in the Mirror', 'Tia Sharma', 'COMPLETED'),
+  ('The Forty Rules of Love', 'Elif Shafak', 'COMPLETED');

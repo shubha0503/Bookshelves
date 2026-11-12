@@ -1,0 +1,22 @@
+{
+  "name": "margins-digital-library",
+  "version": "1.0.0",
+  "description": "Margins — An Interactive Personal Digital Library & Reflection Journal",
+  "scripts": {
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "init-db": "cd server && npm run init-db",
+    "seed-db": "cd server && npm run seed-db"
+  },
+  "keywords": [
+    "library",
+    "bookshelf",
+    "reading-tracker",
+    "express",
+    "react",
+    "mysql"
+  ],
+  "author": "",
+  "license": "ISC"
+}
